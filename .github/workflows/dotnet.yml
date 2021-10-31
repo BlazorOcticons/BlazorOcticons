@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      env:
+        GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
+        NUGET_TOKEN: ${{ secrets.NUGET }}
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -25,9 +28,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Build solution and generate NuGet package
       run: dotnet pack -c Release -o out  
-    - name: Publish Nuget to GitHub registry
-      run: dotnet nuget push ./out/*.nupkg -k ${GITHUB_TOKEN} --source https://nuget.pkg.github.com/elv1s42/index.json --skip-duplicate --no-symbols true
     - name: Push generated package to NuGet
-      run: dotnet nuget push ./out/*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET }} --source https://api.nuget.org/v3/index.json
-      env:
-        GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
+      run: dotnet nuget push ./out/*.nupkg --skip-duplicate --api-key ${NUGET_TOKEN} --source https://api.nuget.org/v3/index.json --no-symbols true
+    - name: Publish Nuget to GitHub registry
+      run: dotnet nuget push ./out/*.nupkg --skip-duplicate --api-key ${GITHUB_TOKEN} --source https://nuget.pkg.github.com/elv1s42/index.json --no-symbols true
