@@ -18,7 +18,7 @@
     <Nullable>enable</Nullable>
     <Version>0.1.0-preview</Version>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
 
     <IsRoslynComponent>true</IsRoslynComponent>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <None Include="Images\icon.png" Pack="true" PackagePath="\" />
-    <None Include="License\LICENSE.txt" Pack="true" PackagePath="\" />
+    <None Include="LICENSE" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -55,10 +55,6 @@
   <PropertyGroup>
     <GetTargetPathDependsOn>$(GetTargetPathDependsOn)</GetTargetPathDependsOn>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="License\" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
