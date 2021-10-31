@@ -16,7 +16,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>0.1.0-preview</Version>
+    <Version>0.1.1-preview</Version>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 
