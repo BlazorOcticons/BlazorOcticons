@@ -29,3 +29,4 @@ jobs:
       run: dotnet nuget push ./out/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/elv1s42/index.json --skip-duplicate --no-symbols true
       env:
         GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
+        NUGET_TOKEN: ${{ secrets.NUGET }}
