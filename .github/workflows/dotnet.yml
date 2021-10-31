@@ -26,9 +26,9 @@ jobs:
     - name: Build solution and generate NuGet package
       run: dotnet pack -c Release -o out  
     - name: Push generated package to NuGet
-      run: dotnet nuget push ./out/*.nupkg --skip-duplicate --api-key ${NUGET_TOKEN} --source https://api.nuget.org/v3/index.json --no-symbols true
+      run: dotnet nuget push ./out/*.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
     - name: Publish Nuget to GitHub registry
-      run: dotnet nuget push ./out/*.nupkg --skip-duplicate --api-key ${GITHUB_TOKEN} --source https://nuget.pkg.github.com/elv1s42/index.json --no-symbols true
+      run: dotnet nuget push ./out/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/elv1s42/index.json --skip-duplicate --no-symbols true
       env:
         GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
         NUGET_TOKEN: ${{ secrets.NUGET }}
