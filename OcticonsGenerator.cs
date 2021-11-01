@@ -12,11 +12,11 @@ namespace BlazorOcticons
         public void Execute(GeneratorExecutionContext context)
         {
             var source = @"
-namespace BlazorOcticons {{
-    public class Test {{
-        public string Title {{ get; set; }}
-    }}
-}}";
+namespace BlazorOcticons {
+    public class Test {
+        public string Title { get; set; }
+    }
+}";
             context.AddSource("Test.cs", SourceText.From(source, Encoding.UTF8));
         }
     }

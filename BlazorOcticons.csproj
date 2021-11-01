@@ -16,7 +16,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>0.1.1-preview</Version>
+    <Version>0.1.2-preview</Version>
     <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 
@@ -33,8 +33,11 @@
 
   <ItemGroup>
     <Compile Remove="bin\**" />
+    <Compile Remove="WebApp\**" />
     <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="WebApp\**" />
     <None Remove="bin\**" />
+    <None Remove="WebApp\**" />
     <None Remove="bin\$(Configuration)\netstandard2.0\\BlazorOcticons.dll" />
   </ItemGroup>
 
@@ -49,7 +52,11 @@
   </PropertyGroup>
 
   <ItemGroup Label="Package References">
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.11.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.10.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.10.0" PrivateAssets="All" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -60,4 +67,8 @@
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
 </Project>
