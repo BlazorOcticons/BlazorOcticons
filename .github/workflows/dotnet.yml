@@ -25,10 +25,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Build solution and generate NuGet package
       run: dotnet pack -c Release -o out
-    - name: Publish Nuget to GitHub registry
-      run: dotnet nuget push ./out/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/elv1s42/index.json --skip-duplicate --no-symbols true
     - name: Publish Nuget to to NuGet.org
       run: dotnet nuget push ./out/*.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
       env:
-        GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
         NUGET_TOKEN: ${{ secrets.NUGET }}
