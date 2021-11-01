@@ -1,9 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>9</LangVersion>
-    <Nullable>enable</Nullable>
     <Authors>Evgeniy K.</Authors>
     <Description></Description>
     <PackageProjectUrl>https://github.com/elv1s42/BlazorOcticons</PackageProjectUrl>
@@ -33,17 +32,12 @@
 
   <ItemGroup>
     <Compile Remove="bin\**" />
-    <Compile Remove="WebApp\**" />
-    <EmbeddedResource Remove="bin\**" />
-    <EmbeddedResource Remove="WebApp\**" />
     <None Remove="bin\**" />
-    <None Remove="WebApp\**" />
-    <None Remove="bin\$(Configuration)\netstandard2.0\\BlazorOcticons.dll" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Images\icon.png" Pack="true" PackagePath="\" />
-    <None Include="LICENSE" Pack="true" PackagePath="\" />
+    <None Include="..\LICENSE" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -52,16 +46,13 @@
   </PropertyGroup>
 
   <ItemGroup Label="Package References">
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.10.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.10.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.11.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <GetTargetPathDependsOn>$(GetTargetPathDependsOn)</GetTargetPathDependsOn>
-  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />

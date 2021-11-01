@@ -17,7 +17,7 @@ namespace BlazorOcticons {
         public string Title { get; set; }
     }
 }";
-            context.AddSource("Test.cs", SourceText.From(source, Encoding.UTF8));
+            context.AddSource("Octicons.cs", SourceText.From(source, Encoding.UTF8));
         }
     }
 }
