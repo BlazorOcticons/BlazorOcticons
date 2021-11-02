@@ -1,7 +1,57 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="w-12 max-w-lg mx-auto">
+  <div class="d-flex flex-direction-column">
+    <div class="d-flex text-align-center py-4 px-5 lg-px-4 sm-px-3">
+      <div class="py-5 md-py-4 position-relative mx-auto max-w-md">
+        <div class="py-2">
+          <span class="fw-800 fs-60 md-fs-xxx-large color-1 mono-font">
+            BlazorOcticons
+          </span>
+        </div>
+        <div class="pt-4 pb-4 md-pt-0">
+          <span class="fs-x-large sm-fs-medium lh-150">
+            BlazorOcticons is an easy-to-use GitHub Octicons <br> built as customizable <b>.razor</b> components
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="w-12 max-w-lg mx-auto">
+  <div class="d-flex flex-direction-column">
+    <div class="position-relative">
+      <div id="install" class="py-2">
+        <span class="fw-800 fs-xxx-large color-1">
+          Installation
+        </span>
+      </div>
+      <div class="d-flex align-items-center justify-content-center py-3 md-py-2">
+        <div class="py-2 lg-py-0">
+          <div id="copy" class="d-flex p-3 text-decoration-none color-black dark br-3 w-fit-content sm-p-2 sm-br-2 cursor-pointer big-shadow">
+            <img src="chevron-right.svg" alt=">" class="h-24px w-24px pr-3 sm-pr-1" />
+            <div class="d-flex align-items-center justify-content-center pr-4 sm-pr-3">
+              <span class="fs-large fw-bold code grey sm-fs-medium"><span class="dotnet">dotnet</span> add package BlazorOcticons --version 0.1.2-preview</span>
+            </div>
+            <img src="copy.svg" alt="copy" class="h-24px w-24px pr-2" />
+            <textarea id="input-copy" class="d-none" type="text">dotnet add package BlazorOcticons --version 0.1.2-preview</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="position-relative">
+      <div id="usage" class="py-2">
+        <span class="fw-800 fs-xxx-large color-1">
+          Usage
+        </span>
+      </div>
+    </div>
+    <div class="position-relative">
+      <div id="demo" class="py-2">
+        <span class="fw-800 fs-xxx-large color-1">
+          Demo
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

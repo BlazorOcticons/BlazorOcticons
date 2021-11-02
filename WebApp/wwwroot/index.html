@@ -1,25 +1,51 @@
 <!DOCTYPE html>
-<html>
 
+<html lang="en-us">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>WebApp</title>
-    <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="WebApp.styles.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Language" content="en">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow">
+  <title>TestLand</title>
+  <base href="/" />
+  <meta name="description" content="BlazorOcticons is an easy-to-use GitHub Octicons built as customizable '.razor' components">
+  <meta property="og:title" content="BlazorOcticons" />
+  <meta property="og:site_name" content="BlazorOcticons" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://testland.io" />
+  <meta property="og:image" content="https://avatars2.githubusercontent.com/u/71715703?s=200&v=4" />
+  <link href="css/site.css" rel="stylesheet" />
+  <link href="css/cssville.css" rel="stylesheet" />
+  <link href="WebApp.styles.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<div class="w-12 mx-auto flex-direction-column">
+  <body>
     <div id="app">Loading...</div>
 
     <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+      An unhandled error has occurred.
+      <a href="">Reload</a>
+      <a class="dismiss">🗙</a>
     </div>
+    <footer class="text-align-center">
+      <div class="py-3">
+        <span class="p-2">&copy; BlazorOcticons 2021 - visit on <a href="https://github.com/BlazorOcticons" target="_blank">GitHub</a></span>
+      </div>
+    </footer>
     <script src="_framework/blazor.webassembly.js"></script>
-</body>
+    <script src="js/site.js"></script>
+  </body>
+</div>
 
 </html>

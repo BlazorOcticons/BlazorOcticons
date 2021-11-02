@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
@@ -11,13 +14,27 @@ namespace BlazorOcticons
 
         public void Execute(GeneratorExecutionContext context)
         {
-            var source = @"
+            var sourceStart = @"
 namespace BlazorOcticons {
-    public class Test {
-        public string Title { get; set; }
+    public static class Octicons {
+";
+            var properties = "";
+            var assembly = Assembly.GetExecutingAssembly();
+            var icons = assembly.GetManifestResourceNames()
+                .Where(str => str.StartsWith("BlazorOcticons.icons"));
+            foreach (var icon in icons)
+            {
+                using Stream stream = assembly.GetManifestResourceStream(icon);
+                using StreamReader reader = new StreamReader(stream);
+                var content = reader.ReadToEnd();
+                properties += $@"
+            public static string {icon.Replace(".", "")};";
+            }
+
+            var sourceEnd = @"
     }
 }";
-            context.AddSource("Octicons.cs", SourceText.From(source, Encoding.UTF8));
+            context.AddSource("Octicons.cs", SourceText.From($"{sourceStart}{properties}{sourceEnd}", Encoding.UTF8));
         }
     }
 }

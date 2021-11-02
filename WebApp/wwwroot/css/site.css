@@ -1,0 +1,103 @@
+@import url('cssville.css');
+
+:root {
+  --color-1: #702AF7;
+}
+
+html, body {
+  color: #343A40;
+  background-color: #FFF0F8;
+  margin: 0 !important;
+  position: relative;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+a {text-decoration: none !important;}
+
+.shadow {
+  box-shadow: 0px 12px 24px -8px rgba(0,74,140,0.5) !important;
+}
+
+.big-shadow {
+  box-shadow: 0px 24px 32px -8px rgba(52,58,64,0.5) !important;
+}
+
+.mono-font {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+.lh-150 {
+  line-height: 150%;
+}
+
+.fs-60 {
+  font-size: 60px;
+}
+
+.dark {
+  background-color: #343A40;
+}
+
+.grey {
+  color: #cccccc;
+}
+
+.dotnet {
+  color: #F4F442;
+}
+
+.code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.scale-on-hover {
+  -ms-transition: all ease-in-out 0.3s;
+  -o-transition: all ease-in-out 0.3s;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+}
+
+.scale-on-hover:hover {
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.color-1 {
+  color: var(--color-1) !important;
+}
+
+.blue-grad {
+  background: linear-gradient(145deg, #008FE0, #0065B3) !important;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
