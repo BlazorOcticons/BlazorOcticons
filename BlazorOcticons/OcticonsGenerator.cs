@@ -22,13 +22,15 @@ namespace BlazorOcticons {
             var assembly = Assembly.GetExecutingAssembly();
             var icons = assembly.GetManifestResourceNames()
                 .Where(str => str.StartsWith("BlazorOcticons.icons"));
+            var count = 0;
             foreach (var icon in icons)
             {
                 using Stream stream = assembly.GetManifestResourceStream(icon);
                 using StreamReader reader = new StreamReader(stream);
                 var content = reader.ReadToEnd();
                 properties += $@"
-            public static string {icon.Replace(".", "")};";
+            public static string I{count} = {"\"" + icon.Replace(".", "").Replace(" ", "") + "\""};";
+                count++;
             }
 
             var sourceEnd = @"
