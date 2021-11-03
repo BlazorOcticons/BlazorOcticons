@@ -12,8 +12,5 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BlazorOcticons\BlazorOcticons.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer"/>
-  </ItemGroup>
 
 </Project>
