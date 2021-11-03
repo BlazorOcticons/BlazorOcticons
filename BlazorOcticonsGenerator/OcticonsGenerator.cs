@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
-namespace BlazorOcticons
+namespace BlazorOcticonsGenerator
 {
     [Generator]
     public class OcticonsGenerator : ISourceGenerator
@@ -22,7 +22,7 @@ namespace BlazorOcticons
             }
             var iconsFolder = Path.Combine(projectDirectory, "Octicons");
             var sourceStart = @"
-namespace BlazorOcticons {
+namespace BlazorOcticonsGenerator {
     // this is the list of files generated in the Octicons folder
     public static class Octicons {
 ";
@@ -39,14 +39,14 @@ namespace BlazorOcticons {
             var properties = "";
             var assembly = Assembly.GetExecutingAssembly();
             var icons = assembly.GetManifestResourceNames()
-                .Where(str => str.StartsWith("BlazorOcticons.icons"));
+                .Where(str => str.StartsWith("BlazorOcticonsGenerator.icons"));
             var count = 0;
-            foreach (var icon in icons.Take(2))
+            foreach (var icon in icons)
             {
                 using var stream = assembly.GetManifestResourceStream(icon);
                 using var reader = new StreamReader(stream);
                 var svg = reader.ReadToEnd();
-                var fileName = icon.Replace("BlazorOcticons.icons.", "").Replace(".svg", "").Replace(" ", "");
+                var fileName = icon.Replace("BlazorOcticonsGenerator.icons.", "").Replace(".svg", "").Replace(" ", "");
                 fileName = string.Join("", fileName.Split('-').Select(i => $"{i[0].ToString().ToUpper()}{i.Substring(1)}"));
                 properties += $@"
             public static string I{count} = {"\"" + fileName + "\""};";

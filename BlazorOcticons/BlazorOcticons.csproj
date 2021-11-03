@@ -15,7 +15,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>0.1.2-preview</Version>
+    <Version>0.1.3-preview</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <IsRoslynComponent>true</IsRoslynComponent>
@@ -28,10 +28,6 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="icons\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="bin\**" />
@@ -48,10 +44,6 @@
     <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.11.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="bin\Debug\netstandard2.0\\BlazorOcticons.dll" />
   </ItemGroup>
 
   <ItemGroup>
