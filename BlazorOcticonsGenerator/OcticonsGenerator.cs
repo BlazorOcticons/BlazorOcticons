@@ -26,16 +26,6 @@ namespace BlazorOcticonsGenerator {
     // this is the list of files generated in the Octicons folder
     public static class Octicons {
 ";
-            var code = @"
-
-@code
-{
-  [Parameter]
-  public string Color { get; set; }
-
-  [Parameter]
-  public int Size { get; set; }
-}";
             var properties = "";
             var assembly = Assembly.GetExecutingAssembly();
             var icons = assembly.GetManifestResourceNames()
@@ -48,6 +38,17 @@ namespace BlazorOcticonsGenerator {
                 var svg = reader.ReadToEnd();
                 var fileName = icon.Replace("BlazorOcticonsGenerator.icons.", "").Replace(".svg", "").Replace(" ", "");
                 fileName = string.Join("", fileName.Split('-').Select(i => $"{i[0].ToString().ToUpper()}{i.Substring(1)}"));
+                var size = Convert.ToInt32(fileName.Substring(fileName.Length - 2, 2));
+                var code = $@"
+
+@code
+{{
+  [Parameter]
+  public string Color {{ get; set; }} = ""#000"";
+
+  [Parameter]
+  public int Size {{ get; set; }} = {size};
+}}";
                 properties += $@"
             public static string I{count} = {"\"" + fileName + "\""};";
                 count++;
