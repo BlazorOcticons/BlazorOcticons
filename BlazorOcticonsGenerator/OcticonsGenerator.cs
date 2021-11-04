@@ -83,19 +83,19 @@ namespace BlazorOcticonsGenerator {
   <div class=""pb-3"">
     <span class=""fw-bold fs-x-large"">12px</span>
   </div>
-  <div class=""d-flex pb-3"">
+  <div class=""d-flex pb-3 flex-wrap-wrap"">
     {divIcons12}
   </div>
   <div class=""pb-3"">
     <span class=""fw-bold fs-x-large"">16px</span>
   </div>
-  <div class=""d-flex pb-3"">
+  <div class=""d-flex pb-3 flex-wrap-wrap"">
     {divIcons16}
   </div>
   <div class=""d-flex pb-3"">
     <span class=""fw-bold fs-x-large"">24px</span>
   </div>
-  <div class=""d-flex pb-3"">
+  <div class=""d-flex pb-3 flex-wrap-wrap"">
     {divIcons24}
   </div>
 </div>");
