@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -28,9 +29,11 @@ namespace BlazorOcticonsGenerator {
 ";
             var properties = "";
             var assembly = Assembly.GetExecutingAssembly();
-            var icons = assembly.GetManifestResourceNames()
-                .Where(str => str.StartsWith("BlazorOcticonsGenerator.icons"));
+            var icons = assembly.GetManifestResourceNames().Where(str => str.StartsWith("BlazorOcticonsGenerator.icons"));
             var count = 0;
+            var icons12 = new List<string>();
+            var icons16 = new List<string>();
+            var icons24 = new List<string>();
             foreach (var icon in icons)
             {
                 using var stream = assembly.GetManifestResourceStream(icon);
@@ -39,6 +42,12 @@ namespace BlazorOcticonsGenerator {
                 var fileName = icon.Replace("BlazorOcticonsGenerator.icons.", "").Replace(".svg", "").Replace(" ", "");
                 fileName = string.Join("", fileName.Split('-').Select(i => $"{i[0].ToString().ToUpper()}{i.Substring(1)}"));
                 var size = Convert.ToInt32(fileName.Substring(fileName.Length - 2, 2));
+                switch (size)
+                {
+                    case 12: icons12.Add(fileName); break;
+                    case 16: icons16.Add(fileName); break;
+                    case 24: icons24.Add(fileName); break;
+                }
                 var code = $@"
 
 @code
@@ -58,12 +67,38 @@ namespace BlazorOcticonsGenerator {
                 {
                     Directory.CreateDirectory(iconsFolder);
                 }
+                
                 File.WriteAllText(Path.Combine(iconsFolder, $"{fileName}.razor"), $"{svg.Replace("path fill", "path fill=\"@Color\" fill")}{code}");
             }
 
+            var divIcons12 = icons12.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><{icon12} /></div>{Environment.NewLine}");
+            var divIcons16 = icons16.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><{icon12} /></div>{Environment.NewLine}");
+            var divIcons24 = icons24.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><{icon12} /></div>{Environment.NewLine}");
             var sourceEnd = @"
     }
 }";
+            File.WriteAllText(Path.Combine(projectDirectory, "IconsCollection.razor"), 
+                $@"
+<div class=""py-4"">
+  <div class=""pb-3"">
+    <span class=""fw-bold fs-x-large"">12px</span>
+  </div>
+  <div class=""d-flex pb-3"">
+    {divIcons12}
+  </div>
+  <div class=""pb-3"">
+    <span class=""fw-bold fs-x-large"">16px</span>
+  </div>
+  <div class=""d-flex pb-3"">
+    {divIcons16}
+  </div>
+  <div class=""d-flex pb-3"">
+    <span class=""fw-bold fs-x-large"">24px</span>
+  </div>
+  <div class=""d-flex pb-3"">
+    {divIcons24}
+  </div>
+</div>");
             context.AddSource("Octicons.cs", SourceText.From($"{sourceStart}{properties}{sourceEnd}", Encoding.UTF8));
         }
     }

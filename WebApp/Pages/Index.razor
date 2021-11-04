@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using WebApp.Shared;
 
 <div class="w-12 max-w-lg mx-auto">
   <div class="d-flex flex-direction-column">
@@ -34,7 +35,7 @@
               <span class="fs-large fw-bold code grey sm-fs-medium"><span class="dotnet">dotnet</span> add package BlazorOcticons --version 0.1.2-preview</span>
             </div>
             <img src="copy.svg" alt="copy" class="h-24px w-24px pr-2" />
-            <textarea id="input-copy" class="d-none" type="text">dotnet add package BlazorOcticons --version 0.1.2-preview</textarea>
+            <textarea id="input-copy" class="d-none" type="text">dotnet add package BlazorOcticons</textarea>
           </div>
         </div>
       </div>
@@ -44,6 +45,7 @@
         <span class="fw-800 fs-xxx-large color-1">
           Usage
         </span>
+        <Alert16 />
       </div>
     </div>
     <div class="position-relative">
@@ -51,6 +53,7 @@
         <span class="fw-800 fs-xxx-large color-1">
           Demo
         </span>
+        <IconsCollection />
       </div>
     </div>
   </div>
