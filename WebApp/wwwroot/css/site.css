@@ -46,6 +46,10 @@ a {text-decoration: none !important;}
   color: #F4F442;
 }
 
+.using {
+  color: #569CD5;
+}
+
 .code {
   font-family: 'JetBrains Mono', monospace;
 }

@@ -2,7 +2,7 @@
 @using WebApp.Shared;
 
 <div class="w-12 max-w-lg mx-auto">
-  <div class="d-flex flex-direction-column">
+  <div class="d-flex flex-direction-column pb-4">
     <div class="d-flex text-align-center py-4 px-5 lg-px-4 sm-px-3">
       <div class="py-5 md-py-4 position-relative mx-auto max-w-md">
         <div class="py-2">
@@ -35,11 +35,11 @@
       <div class="d-flex pt-3 pb-5 md-pt-2 md-pb-4">
         <div class="py-2 lg-py-0">
           <div id="copy" class="d-flex p-3 text-decoration-none color-black dark br-3 w-fit-content sm-p-2 sm-br-2 cursor-pointer big-shadow">
-            <img src="chevron-right.svg" alt=">" class="h-24px w-24px pr-3 sm-pr-1" />
-            <div class="d-flex align-items-center justify-content-center pr-4 sm-pr-3">
+            <ChevronRight16 Size="24" Color="#ccc"/>
+            <div class="d-flex align-items-center justify-content-center pl-2 pr-3 sm-pr-2">
               <span class="fs-large fw-bold code grey sm-fs-medium"><span class="dotnet">dotnet</span> add package BlazorOcticons</span>
             </div>
-            <img src="copy.svg" alt="copy" class="h-24px w-24px pr-2" />
+            <Copy16 Size="24" Color="#ccc"/>
             <textarea id="input-copy" class="d-none" type="text">dotnet add package BlazorOcticons</textarea>
           </div>
         </div>
@@ -47,6 +47,25 @@
       <div class="py-3">
         <span class="fs-x-large">
           2. In the <span class="px-2 py-1 br-2 bg-color-white color-1">_Imports.razor</span> file add <span class="px-2 py-1 br-2 bg-color-white color-1">@@using BlazorOcticons.Octicons;</span>
+        </span>
+      </div>
+      <div class="d-flex pt-3 pb-5 md-pt-2 md-pb-4">
+        <div class="py-2 lg-py-0">
+          <div class="d-flex p-4 text-decoration-none color-black dark br-3 w-fit-content sm-p-2 sm-br-2 big-shadow">
+            <div class="align-items-center justify-content-center pl-2 pr-3 sm-pr-2">
+              <span class="fs-large fw-bold code grey sm-fs-medium">@@using System.Net.Http</span><br />
+              <span class="fs-large fw-bold code grey sm-fs-medium">@@using System.Net.Http.Json</span><br />
+              <span class="fs-large fw-bold code grey sm-fs-medium">...</span><br />
+              <span class="fs-large fw-bold code grey sm-fs-medium">@@using Microsoft.AspNetCore.Components</span><br />
+              <span class="fs-large fw-bold code grey sm-fs-medium">@@using Microsoft.JSInterop</span><br />
+              <span class="fs-large fw-bold code grey sm-fs-medium"><span class="using">@@using</span> <span class="dotnet">BlazorOcticons.Octicons;</span></span><br />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="py-3">
+        <span class="fs-x-large">
+          3. That's it! Now you can use the components in your project
         </span>
       </div>
     </div>
@@ -64,7 +83,7 @@
         </span>
       </div>
       <div class="pb-3">
-        <span class="fs-x-large">All the icons below are the <b>.razor</b> components</span>
+        <span class="fs-x-large">All the icons below are <b>.razor</b> components</span>
       </div>
       <IconsCollection />
     </div>
