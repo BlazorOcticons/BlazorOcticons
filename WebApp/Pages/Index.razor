@@ -12,49 +12,61 @@
         </div>
         <div class="pt-4 pb-4 md-pt-0">
           <span class="fs-x-large sm-fs-medium lh-150">
-            BlazorOcticons is an easy-to-use GitHub Octicons <br> built as customizable <b>.razor</b> components
+            BlazorOcticons is an easy-to-use GitHub Octicons <br> built as customizable <span class="px-2 py-1 br-2 bg-color-white color-1">.razor</span> components
           </span>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="w-12 max-w-lg mx-auto">
-  <div class="d-flex flex-direction-column">
-    <div class="position-relative">
-      <div id="install" class="py-2">
+<div class="w-12 bg-color-white">
+  <div class="w-12 max-w-lg mx-auto d-flex flex-direction-column">
+    <div class="position-relative pt-4">
+      <div id="install" class="py-4">
         <span class="fw-800 fs-xxx-large color-1">
           Installation
         </span>
       </div>
-      <div class="d-flex align-items-center justify-content-center py-3 md-py-2">
+      <div class="py-3">
+        <span class="fs-x-large">
+          1. Install the <span class="px-2 py-1 br-2 bg-color-white color-1">BlazorOcticons</span> NuGet package
+        </span>
+      </div>
+      <div class="d-flex pt-3 pb-5 md-pt-2 md-pb-4">
         <div class="py-2 lg-py-0">
           <div id="copy" class="d-flex p-3 text-decoration-none color-black dark br-3 w-fit-content sm-p-2 sm-br-2 cursor-pointer big-shadow">
             <img src="chevron-right.svg" alt=">" class="h-24px w-24px pr-3 sm-pr-1" />
             <div class="d-flex align-items-center justify-content-center pr-4 sm-pr-3">
-              <span class="fs-large fw-bold code grey sm-fs-medium"><span class="dotnet">dotnet</span> add package BlazorOcticons --version 0.1.2-preview</span>
+              <span class="fs-large fw-bold code grey sm-fs-medium"><span class="dotnet">dotnet</span> add package BlazorOcticons</span>
             </div>
             <img src="copy.svg" alt="copy" class="h-24px w-24px pr-2" />
             <textarea id="input-copy" class="d-none" type="text">dotnet add package BlazorOcticons</textarea>
           </div>
         </div>
       </div>
+      <div class="py-3">
+        <span class="fs-x-large">
+          2. In the <span class="px-2 py-1 br-2 bg-color-white color-1">_Imports.razor</span> file add <span class="px-2 py-1 br-2 bg-color-white color-1">@@using BlazorOcticons.Octicons;</span>
+        </span>
+      </div>
     </div>
     <div class="position-relative">
-      <div id="usage" class="py-2">
+      <div id="usage" class="py-4">
         <span class="fw-800 fs-xxx-large color-1">
           Usage
         </span>
-        <Alert16 />
       </div>
     </div>
     <div class="position-relative">
-      <div id="demo" class="py-2">
+      <div id="demo" class="py-4">
         <span class="fw-800 fs-xxx-large color-1">
           Demo
         </span>
-        <IconsCollection />
       </div>
+      <div class="pb-3">
+        <span class="fs-x-large">All the icons below are the <b>.razor</b> components</span>
+      </div>
+      <IconsCollection />
     </div>
   </div>
 </div>
