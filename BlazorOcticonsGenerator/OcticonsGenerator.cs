@@ -28,6 +28,7 @@ namespace BlazorOcticonsGenerator {
     public static class Octicons {
 ";
             var properties = "";
+            var all = new List<string>();
             var assembly = Assembly.GetExecutingAssembly();
             var icons = assembly.GetManifestResourceNames().Where(str => str.StartsWith("BlazorOcticonsGenerator.icons"));
             var count = 0;
@@ -67,13 +68,15 @@ namespace BlazorOcticonsGenerator {
                 {
                     Directory.CreateDirectory(iconsFolder);
                 }
-                
+                all.Add(fileName);
                 File.WriteAllText(Path.Combine(iconsFolder, $"{fileName}.razor"), $"{svg.Replace("path fill", "path fill=\"@Color\" fill")}{code}");
             }
+            properties += $@"
+            public static string[] All = new[] {{ {string.Join(",", all.Select(fn => "\"" + fn + "\""))} }};";
 
-            var divIcons12 = icons12.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><{icon12} /></div>{Environment.NewLine}");
-            var divIcons16 = icons16.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><{icon12} /></div>{Environment.NewLine}");
-            var divIcons24 = icons24.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><{icon12} /></div>{Environment.NewLine}");
+            var divIcons12 = icons12.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon12}\"><{icon12} /></a></div>{Environment.NewLine}");
+            var divIcons16 = icons16.Aggregate("", (current, icon16) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon16}\"><{icon16} /></a></div>{Environment.NewLine}");
+            var divIcons24 = icons24.Aggregate("", (current, icon24) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon24}\"><{icon24} /></a></div>{Environment.NewLine}");
             var sourceEnd = @"
     }
 }";
