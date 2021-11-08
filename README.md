@@ -9,9 +9,7 @@
 1. Install the BlazorOcticons NuGet package
 
 ``` 
-
 dotnet add package BlazorOcticons
-
 ```
 
 2. In the `_Imports.razor` file add `@using BlazorOcticons.Octicons;`
