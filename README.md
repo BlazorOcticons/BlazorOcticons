@@ -6,6 +6,11 @@
 
 **BlazorOcticons** is an easy-to-use GitHub Octicons built as customizable `.razor` components.
 
+| NuGet Package           | Description |
+|-------------------------|-------------|
+| BlazorOcticons          | Main package which contains only `.razor` components |
+| BlazorOcticonsGenerator | Helper package which contains Source Generator for Octicons |
+
 ## Installation
 
 1. Install the BlazorOcticons NuGet package
