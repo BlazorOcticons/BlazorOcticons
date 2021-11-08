@@ -1,4 +1,6 @@
 [![.NET](https://github.com/BlazorOcticons/BlazorOcticons/actions/workflows/dotnet.yml/badge.svg)](https://github.com/BlazorOcticons/BlazorOcticons/actions/workflows/dotnet.yml)
+![GitHub](https://img.shields.io/github/license/BlazorOcticons/BlazorOcticons)
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/BlazorOcticons?logo=nuget)
 
 # BlazorOcticons
 
