@@ -13,13 +13,13 @@
 
 ## Installation
 
-1. Install the BlazorOcticons NuGet package
+1. Install the BlazorOcticons NuGet package:
 
 ``` 
 dotnet add package BlazorOcticons
 ```
 
-2. In the `_Imports.razor` file add `@using BlazorOcticons.Octicons;`
+2. In the `_Imports.razor` file add `@using BlazorOcticons.Octicons`:
 
 ``` razor
 
@@ -32,7 +32,7 @@ dotnet add package BlazorOcticons
 
 ```
 
-3. That's it! Now you can use the components in your project
+3. That's it! Now you can use the components in your project.
 
 ## Usage
 
