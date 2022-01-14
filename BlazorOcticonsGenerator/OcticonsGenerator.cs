@@ -69,7 +69,8 @@ namespace BlazorOcticonsGenerator {
                     Directory.CreateDirectory(iconsFolder);
                 }
                 all.Add(fileName);
-                File.WriteAllText(Path.Combine(iconsFolder, $"{fileName}.razor"), $"{svg.Replace("path fill", "path fill=\"@Color\" fill")}{code}");
+                var fileContent = $"{svg.Replace("path fill", "path fill=\"@Color\" fill").Replace("path d", "path fill=\"@Color\" d")}{code}";
+                File.WriteAllText(Path.Combine(iconsFolder, $"{fileName}.razor"), fileContent);
             }
             properties += $@"
             public static string[] All = new[] {{ {string.Join(",", all.Select(fn => "\"" + fn + "\""))} }};";
