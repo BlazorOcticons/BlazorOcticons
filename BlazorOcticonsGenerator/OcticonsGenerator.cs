@@ -35,6 +35,8 @@ namespace BlazorOcticonsGenerator {
             var icons12 = new List<string>();
             var icons16 = new List<string>();
             var icons24 = new List<string>();
+            var icons48 = new List<string>();
+            var icons96 = new List<string>();
             foreach (var icon in icons)
             {
                 using var stream = assembly.GetManifestResourceStream(icon);
@@ -48,6 +50,8 @@ namespace BlazorOcticonsGenerator {
                     case 12: icons12.Add(fileName); break;
                     case 16: icons16.Add(fileName); break;
                     case 24: icons24.Add(fileName); break;
+                    case 48: icons48.Add(fileName); break;
+                    case 96: icons96.Add(fileName); break;
                 }
                 var code = $@"
 
@@ -78,6 +82,8 @@ namespace BlazorOcticonsGenerator {
             var divIcons12 = icons12.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon12}\"><{icon12} /></a></div>{Environment.NewLine}");
             var divIcons16 = icons16.Aggregate("", (current, icon16) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon16}\"><{icon16} /></a></div>{Environment.NewLine}");
             var divIcons24 = icons24.Aggregate("", (current, icon24) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon24}\"><{icon24} /></a></div>{Environment.NewLine}");
+            var divIcons48 = icons48.Aggregate("", (current, icon48) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon48}\"><{icon48} /></a></div>{Environment.NewLine}");
+            var divIcons96 = icons96.Aggregate("", (current, icon96) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon96}\"><{icon96} /></a></div>{Environment.NewLine}");
             var sourceEnd = @"
     }
 }";
@@ -101,6 +107,18 @@ namespace BlazorOcticonsGenerator {
   </div>
   <div class=""d-flex pb-3 flex-wrap-wrap"">
     {divIcons24}
+  </div>
+  <div class=""d-flex pb-3"">
+    <span class=""fw-bold fs-x-large"">48px</span>
+  </div>
+  <div class=""d-flex pb-3 flex-wrap-wrap"">
+    {divIcons48}
+  </div>
+  <div class=""d-flex pb-3"">
+    <span class=""fw-bold fs-x-large"">96px</span>
+  </div>
+  <div class=""d-flex pb-3 flex-wrap-wrap"">
+    {divIcons96}
   </div>
 </div>");
             context.AddSource("Octicons.cs", SourceText.From($"{sourceStart}{properties}{sourceEnd}", Encoding.UTF8));
