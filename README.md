@@ -9,7 +9,7 @@
 | NuGet Package           | Description |
 |-------------------------|-------------|
 | BlazorOcticons          | Main package which contains only `.razor` components |
-| BlazorOcticonsGenerator | Helper package which contains Source Generator for Octicons |
+| BlazorOcticonsGenerator | Helper package which contains Source Generators for Octicons |
 
 ## Installation
 
