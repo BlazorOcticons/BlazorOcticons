@@ -37,6 +37,7 @@ namespace BlazorOcticonsGenerator {
             var icons24 = new List<string>();
             var icons48 = new List<string>();
             var icons96 = new List<string>();
+            var octiconIcon = "";
             foreach (var icon in icons)
             {
                 using var stream = assembly.GetManifestResourceStream(icon);
