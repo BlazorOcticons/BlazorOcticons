@@ -80,11 +80,11 @@ namespace BlazorOcticonsGenerator {
             properties += $@"
             public static string[] All = new[] {{ {string.Join(",", all.Select(fn => "\"" + fn + "\""))} }};";
 
-            var divIcons12 = icons12.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon12}\"><{icon12} /></a></div>{Environment.NewLine}");
-            var divIcons16 = icons16.Aggregate("", (current, icon16) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon16}\"><{icon16} /></a></div>{Environment.NewLine}");
-            var divIcons24 = icons24.Aggregate("", (current, icon24) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon24}\"><{icon24} /></a></div>{Environment.NewLine}");
-            var divIcons48 = icons48.Aggregate("", (current, icon48) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon48}\"><{icon48} /></a></div>{Environment.NewLine}");
-            var divIcons96 = icons96.Aggregate("", (current, icon96) => current + $"    <div class=\"p-3\"><a href=\"/Icon/{icon96}\"><{icon96} /></a></div>{Environment.NewLine}");
+            var divIcons12 = icons12.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon12}\"))\"><{icon12} /></a></div>{Environment.NewLine}");
+            var divIcons16 = icons16.Aggregate("", (current, icon16) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon16}\"))\"><{icon16} /></a></div>{Environment.NewLine}");
+            var divIcons24 = icons24.Aggregate("", (current, icon24) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon24}\"))\"><{icon24} /></a></div>{Environment.NewLine}");
+            var divIcons48 = icons48.Aggregate("", (current, icon48) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon48}\"))\"><{icon48} /></a></div>{Environment.NewLine}");
+            var divIcons96 = icons96.Aggregate("", (current, icon96) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon96}\"))\"><{icon96} /></a></div>{Environment.NewLine}");
             var sourceEnd = @"
     }
 }";
