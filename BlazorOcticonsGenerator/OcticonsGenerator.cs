@@ -25,7 +25,7 @@ namespace BlazorOcticonsGenerator
             var sourceStart = @"
 namespace BlazorOcticonsGenerator {
     // this is the list of files generated in the Octicons folder
-    public static class Octicons {
+    public static class OcticonsList {
 ";
             var properties = "";
             var all = new List<string>();
@@ -95,34 +95,34 @@ namespace BlazorOcticonsGenerator {
     <span class=""fw-bold fs-x-large"">12px</span>
   </div>
   <div class=""d-flex pb-3 flex-wrap-wrap"">
-    {divIcons12}
+{divIcons12}
   </div>
   <div class=""pb-3"">
     <span class=""fw-bold fs-x-large"">16px</span>
   </div>
   <div class=""d-flex pb-3 flex-wrap-wrap"">
-    {divIcons16}
+{divIcons16}
   </div>
   <div class=""d-flex pb-3"">
     <span class=""fw-bold fs-x-large"">24px</span>
   </div>
   <div class=""d-flex pb-3 flex-wrap-wrap"">
-    {divIcons24}
+{divIcons24}
   </div>
   <div class=""d-flex pb-3"">
     <span class=""fw-bold fs-x-large"">48px</span>
   </div>
   <div class=""d-flex pb-3 flex-wrap-wrap"">
-    {divIcons48}
+{divIcons48}
   </div>
   <div class=""d-flex pb-3"">
     <span class=""fw-bold fs-x-large"">96px</span>
   </div>
   <div class=""d-flex pb-3 flex-wrap-wrap"">
-    {divIcons96}
+{divIcons96}
   </div>
 </div>");
-            context.AddSource("Octicons.cs", SourceText.From($"{sourceStart}{properties}{sourceEnd}", Encoding.UTF8));
+            context.AddSource("OcticonsList.cs", SourceText.From($"{sourceStart}{properties}{sourceEnd}", Encoding.UTF8));
         }
     }
 }
