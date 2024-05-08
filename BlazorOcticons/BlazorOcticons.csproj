@@ -15,7 +15,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -34,20 +34,25 @@
     <None Include="..\LICENSE" Pack="true" PackagePath="\" />
     <None Include="..\README.md" Pack="true" PackagePath="\" />
     <None Include="Octicons\Accessibility16.razor" />
+    <None Include="Octicons\Accessibility24.razor" />
     <None Include="Octicons\AccessibilityInset16.razor" />
+    <None Include="Octicons\AccessibilityInset24.razor" />
     <None Include="Octicons\Alert16.razor" />
     <None Include="Octicons\Alert24.razor" />
     <None Include="Octicons\AlertFill12.razor" />
     <None Include="Octicons\AlertFill16.razor" />
     <None Include="Octicons\AlertFill24.razor" />
     <None Include="Octicons\Apps16.razor" />
+    <None Include="Octicons\Apps24.razor" />
     <None Include="Octicons\Archive16.razor" />
     <None Include="Octicons\Archive24.razor" />
     <None Include="Octicons\ArrowBoth16.razor" />
     <None Include="Octicons\ArrowBoth24.razor" />
     <None Include="Octicons\ArrowDown16.razor" />
     <None Include="Octicons\ArrowDown24.razor" />
+    <None Include="Octicons\ArrowDownLeft16.razor" />
     <None Include="Octicons\ArrowDownLeft24.razor" />
+    <None Include="Octicons\ArrowDownRight16.razor" />
     <None Include="Octicons\ArrowDownRight24.razor" />
     <None Include="Octicons\ArrowLeft16.razor" />
     <None Include="Octicons\ArrowLeft24.razor" />
@@ -57,7 +62,9 @@
     <None Include="Octicons\ArrowSwitch24.razor" />
     <None Include="Octicons\ArrowUp16.razor" />
     <None Include="Octicons\ArrowUp24.razor" />
+    <None Include="Octicons\ArrowUpLeft16.razor" />
     <None Include="Octicons\ArrowUpLeft24.razor" />
+    <None Include="Octicons\ArrowUpRight16.razor" />
     <None Include="Octicons\ArrowUpRight24.razor" />
     <None Include="Octicons\Beaker16.razor" />
     <None Include="Octicons\Beaker24.razor" />
@@ -76,8 +83,10 @@
     <None Include="Octicons\Bookmark16.razor" />
     <None Include="Octicons\Bookmark24.razor" />
     <None Include="Octicons\BookmarkFill24.razor" />
+    <None Include="Octicons\BookmarkFilled16.razor" />
     <None Include="Octicons\BookmarkSlash16.razor" />
     <None Include="Octicons\BookmarkSlash24.razor" />
+    <None Include="Octicons\BookmarkSlashFill16.razor" />
     <None Include="Octicons\BookmarkSlashFill24.razor" />
     <None Include="Octicons\Briefcase16.razor" />
     <None Include="Octicons\Briefcase24.razor" />
@@ -88,6 +97,7 @@
     <None Include="Octicons\Bug16.razor" />
     <None Include="Octicons\Bug24.razor" />
     <None Include="Octicons\Cache16.razor" />
+    <None Include="Octicons\Cache24.razor" />
     <None Include="Octicons\Calendar16.razor" />
     <None Include="Octicons\Calendar24.razor" />
     <None Include="Octicons\Check16.razor" />
@@ -104,11 +114,13 @@
     <None Include="Octicons\ChevronDown12.razor" />
     <None Include="Octicons\ChevronDown16.razor" />
     <None Include="Octicons\ChevronDown24.razor" />
+    <None Include="Octicons\ChevronLeft12.razor" />
     <None Include="Octicons\ChevronLeft16.razor" />
     <None Include="Octicons\ChevronLeft24.razor" />
     <None Include="Octicons\ChevronRight12.razor" />
     <None Include="Octicons\ChevronRight16.razor" />
     <None Include="Octicons\ChevronRight24.razor" />
+    <None Include="Octicons\ChevronUp12.razor" />
     <None Include="Octicons\ChevronUp16.razor" />
     <None Include="Octicons\ChevronUp24.razor" />
     <None Include="Octicons\Circle16.razor" />
@@ -117,6 +129,8 @@
     <None Include="Octicons\CircleSlash24.razor" />
     <None Include="Octicons\Clock16.razor" />
     <None Include="Octicons\Clock24.razor" />
+    <None Include="Octicons\ClockFill16.razor" />
+    <None Include="Octicons\ClockFill24.razor" />
     <None Include="Octicons\Cloud16.razor" />
     <None Include="Octicons\Cloud24.razor" />
     <None Include="Octicons\CloudOffline16.razor" />
@@ -169,21 +183,35 @@
     <None Include="Octicons\DesktopDownload16.razor" />
     <None Include="Octicons\DesktopDownload24.razor" />
     <None Include="Octicons\DeviceCamera16.razor" />
+    <None Include="Octicons\DeviceCamera24.razor" />
     <None Include="Octicons\DeviceCameraVideo16.razor" />
     <None Include="Octicons\DeviceCameraVideo24.razor" />
     <None Include="Octicons\DeviceDesktop16.razor" />
     <None Include="Octicons\DeviceDesktop24.razor" />
     <None Include="Octicons\DeviceMobile16.razor" />
     <None Include="Octicons\DeviceMobile24.razor" />
+    <None Include="Octicons\Devices16.razor" />
+    <None Include="Octicons\Devices24.razor" />
     <None Include="Octicons\Diamond16.razor" />
     <None Include="Octicons\Diamond24.razor" />
     <None Include="Octicons\Diff16.razor" />
     <None Include="Octicons\Diff24.razor" />
     <None Include="Octicons\DiffAdded16.razor" />
+    <None Include="Octicons\DiffAdded24.razor" />
     <None Include="Octicons\DiffIgnored16.razor" />
+    <None Include="Octicons\DiffIgnored24.razor" />
     <None Include="Octicons\DiffModified16.razor" />
+    <None Include="Octicons\DiffModified24.razor" />
     <None Include="Octicons\DiffRemoved16.razor" />
+    <None Include="Octicons\DiffRemoved24.razor" />
     <None Include="Octicons\DiffRenamed16.razor" />
+    <None Include="Octicons\DiffRenamed24.razor" />
+    <None Include="Octicons\DiscussionClosed16.razor" />
+    <None Include="Octicons\DiscussionClosed24.razor" />
+    <None Include="Octicons\DiscussionDuplicate16.razor" />
+    <None Include="Octicons\DiscussionDuplicate24.razor" />
+    <None Include="Octicons\DiscussionOutdated16.razor" />
+    <None Include="Octicons\DiscussionOutdated24.razor" />
     <None Include="Octicons\Dot16.razor" />
     <None Include="Octicons\Dot24.razor" />
     <None Include="Octicons\DotFill16.razor" />
@@ -193,6 +221,7 @@
     <None Include="Octicons\Duplicate16.razor" />
     <None Include="Octicons\Duplicate24.razor" />
     <None Include="Octicons\Ellipsis16.razor" />
+    <None Include="Octicons\Ellipsis24.razor" />
     <None Include="Octicons\Eye16.razor" />
     <None Include="Octicons\Eye24.razor" />
     <None Include="Octicons\EyeClosed16.razor" />
@@ -200,8 +229,17 @@
     <None Include="Octicons\FeedDiscussion16.razor" />
     <None Include="Octicons\FeedForked16.razor" />
     <None Include="Octicons\FeedHeart16.razor" />
+    <None Include="Octicons\FeedIssueClosed16.razor" />
+    <None Include="Octicons\FeedIssueDraft16.razor" />
+    <None Include="Octicons\FeedIssueOpen16.razor" />
+    <None Include="Octicons\FeedIssueReopen16.razor" />
     <None Include="Octicons\FeedMerged16.razor" />
     <None Include="Octicons\FeedPerson16.razor" />
+    <None Include="Octicons\FeedPlus16.razor" />
+    <None Include="Octicons\FeedPublic16.razor" />
+    <None Include="Octicons\FeedPullRequestClosed16.razor" />
+    <None Include="Octicons\FeedPullRequestDraft16.razor" />
+    <None Include="Octicons\FeedPullRequestOpen16.razor" />
     <None Include="Octicons\FeedRepo16.razor" />
     <None Include="Octicons\FeedRocket16.razor" />
     <None Include="Octicons\FeedStar16.razor" />
@@ -210,7 +248,9 @@
     <None Include="Octicons\File16.razor" />
     <None Include="Octicons\File24.razor" />
     <None Include="Octicons\FileAdded16.razor" />
+    <None Include="Octicons\FileAdded24.razor" />
     <None Include="Octicons\FileBadge16.razor" />
+    <None Include="Octicons\FileBadge24.razor" />
     <None Include="Octicons\FileBinary16.razor" />
     <None Include="Octicons\FileBinary24.razor" />
     <None Include="Octicons\FileCode16.razor" />
@@ -222,9 +262,15 @@
     <None Include="Octicons\FileDirectoryFill16.razor" />
     <None Include="Octicons\FileDirectoryFill24.razor" />
     <None Include="Octicons\FileDirectoryOpenFill16.razor" />
+    <None Include="Octicons\FileDirectoryOpenFill24.razor" />
+    <None Include="Octicons\FileDirectorySymlink16.razor" />
+    <None Include="Octicons\FileDirectorySymlink24.razor" />
+    <None Include="Octicons\FileMedia16.razor" />
     <None Include="Octicons\FileMedia24.razor" />
     <None Include="Octicons\FileMoved16.razor" />
+    <None Include="Octicons\FileMoved24.razor" />
     <None Include="Octicons\FileRemoved16.razor" />
+    <None Include="Octicons\FileRemoved24.razor" />
     <None Include="Octicons\FileSubmodule16.razor" />
     <None Include="Octicons\FileSubmodule24.razor" />
     <None Include="Octicons\FileSymlinkFile16.razor" />
@@ -233,6 +279,10 @@
     <None Include="Octicons\FileZip24.razor" />
     <None Include="Octicons\Filter16.razor" />
     <None Include="Octicons\Filter24.razor" />
+    <None Include="Octicons\FilterRemove16.razor" />
+    <None Include="Octicons\FilterRemove24.razor" />
+    <None Include="Octicons\FiscalHost16.razor" />
+    <None Include="Octicons\FiscalHost24.razor" />
     <None Include="Octicons\Flame16.razor" />
     <None Include="Octicons\Flame24.razor" />
     <None Include="Octicons\Fold16.razor" />
@@ -254,6 +304,7 @@
     <None Include="Octicons\GitMerge16.razor" />
     <None Include="Octicons\GitMerge24.razor" />
     <None Include="Octicons\GitMergeQueue16.razor" />
+    <None Include="Octicons\GitMergeQueue24.razor" />
     <None Include="Octicons\GitPullRequest16.razor" />
     <None Include="Octicons\GitPullRequest24.razor" />
     <None Include="Octicons\GitPullRequestClosed16.razor" />
@@ -262,6 +313,8 @@
     <None Include="Octicons\GitPullRequestDraft24.razor" />
     <None Include="Octicons\Globe16.razor" />
     <None Include="Octicons\Globe24.razor" />
+    <None Include="Octicons\Goal16.razor" />
+    <None Include="Octicons\Goal24.razor" />
     <None Include="Octicons\Grabber16.razor" />
     <None Include="Octicons\Grabber24.razor" />
     <None Include="Octicons\Graph16.razor" />
@@ -278,6 +331,7 @@
     <None Include="Octicons\History24.razor" />
     <None Include="Octicons\Home16.razor" />
     <None Include="Octicons\Home24.razor" />
+    <None Include="Octicons\HomeFill16.razor" />
     <None Include="Octicons\HomeFill24.razor" />
     <None Include="Octicons\HorizontalRule16.razor" />
     <None Include="Octicons\HorizontalRule24.razor" />
@@ -286,6 +340,7 @@
     <None Include="Octicons\Hubot16.razor" />
     <None Include="Octicons\Hubot24.razor" />
     <None Include="Octicons\IdBadge16.razor" />
+    <None Include="Octicons\IdBadge24.razor" />
     <None Include="Octicons\Image16.razor" />
     <None Include="Octicons\Image24.razor" />
     <None Include="Octicons\Inbox16.razor" />
@@ -302,6 +357,10 @@
     <None Include="Octicons\IssueOpened24.razor" />
     <None Include="Octicons\IssueReopened16.razor" />
     <None Include="Octicons\IssueReopened24.razor" />
+    <None Include="Octicons\IssueTrackedBy16.razor" />
+    <None Include="Octicons\IssueTrackedBy24.razor" />
+    <None Include="Octicons\IssueTracks16.razor" />
+    <None Include="Octicons\IssueTracks24.razor" />
     <None Include="Octicons\Italic16.razor" />
     <None Include="Octicons\Italic24.razor" />
     <None Include="Octicons\Iterations16.razor" />
@@ -311,6 +370,7 @@
     <None Include="Octicons\Key16.razor" />
     <None Include="Octicons\Key24.razor" />
     <None Include="Octicons\KeyAsterisk16.razor" />
+    <None Include="Octicons\KeyAsterisk24.razor" />
     <None Include="Octicons\Law16.razor" />
     <None Include="Octicons\Law24.razor" />
     <None Include="Octicons\LightBulb16.razor" />
@@ -330,16 +390,21 @@
     <None Include="Octicons\Log16.razor" />
     <None Include="Octicons\Log24.razor" />
     <None Include="Octicons\LogoGist16.razor" />
+    <None Include="Octicons\LogoGist24.razor" />
     <None Include="Octicons\LogoGithub16.razor" />
+    <None Include="Octicons\LogoGithub24.razor" />
     <None Include="Octicons\Mail16.razor" />
     <None Include="Octicons\Mail24.razor" />
     <None Include="Octicons\Markdown16.razor" />
+    <None Include="Octicons\Markdown24.razor" />
     <None Include="Octicons\MarkGithub16.razor" />
+    <None Include="Octicons\MarkGithub24.razor" />
     <None Include="Octicons\Megaphone16.razor" />
     <None Include="Octicons\Megaphone24.razor" />
     <None Include="Octicons\Mention16.razor" />
     <None Include="Octicons\Mention24.razor" />
     <None Include="Octicons\Meter16.razor" />
+    <None Include="Octicons\Meter24.razor" />
     <None Include="Octicons\Milestone16.razor" />
     <None Include="Octicons\Milestone24.razor" />
     <None Include="Octicons\Mirror16.razor" />
@@ -348,6 +413,14 @@
     <None Include="Octicons\Moon24.razor" />
     <None Include="Octicons\MortarBoard16.razor" />
     <None Include="Octicons\MortarBoard24.razor" />
+    <None Include="Octicons\MoveToBottom16.razor" />
+    <None Include="Octicons\MoveToBottom24.razor" />
+    <None Include="Octicons\MoveToEnd16.razor" />
+    <None Include="Octicons\MoveToEnd24.razor" />
+    <None Include="Octicons\MoveToStart16.razor" />
+    <None Include="Octicons\MoveToStart24.razor" />
+    <None Include="Octicons\MoveToTop16.razor" />
+    <None Include="Octicons\MoveToTop24.razor" />
     <None Include="Octicons\MultiSelect16.razor" />
     <None Include="Octicons\MultiSelect24.razor" />
     <None Include="Octicons\Mute16.razor" />
@@ -370,10 +443,13 @@
     <None Include="Octicons\PackageDependents16.razor" />
     <None Include="Octicons\PackageDependents24.razor" />
     <None Include="Octicons\Paintbrush16.razor" />
+    <None Include="Octicons\Paintbrush24.razor" />
     <None Include="Octicons\PaperAirplane16.razor" />
     <None Include="Octicons\PaperAirplane24.razor" />
     <None Include="Octicons\Paperclip16.razor" />
     <None Include="Octicons\Paperclip24.razor" />
+    <None Include="Octicons\PasskeyFill16.razor" />
+    <None Include="Octicons\PasskeyFill24.razor" />
     <None Include="Octicons\Paste16.razor" />
     <None Include="Octicons\Paste24.razor" />
     <None Include="Octicons\Pencil16.razor" />
@@ -388,6 +464,10 @@
     <None Include="Octicons\PersonFill24.razor" />
     <None Include="Octicons\Pin16.razor" />
     <None Include="Octicons\Pin24.razor" />
+    <None Include="Octicons\PinSlash16.razor" />
+    <None Include="Octicons\PinSlash24.razor" />
+    <None Include="Octicons\PivotColumn16.razor" />
+    <None Include="Octicons\PivotColumn24.razor" />
     <None Include="Octicons\Play16.razor" />
     <None Include="Octicons\Play24.razor" />
     <None Include="Octicons\Plug16.razor" />
@@ -398,23 +478,38 @@
     <None Include="Octicons\PlusCircle24.razor" />
     <None Include="Octicons\Project16.razor" />
     <None Include="Octicons\Project24.razor" />
+    <None Include="Octicons\ProjectRoadmap16.razor" />
+    <None Include="Octicons\ProjectRoadmap24.razor" />
+    <None Include="Octicons\ProjectSymlink16.razor" />
+    <None Include="Octicons\ProjectSymlink24.razor" />
+    <None Include="Octicons\ProjectTemplate16.razor" />
+    <None Include="Octicons\ProjectTemplate24.razor" />
     <None Include="Octicons\Pulse16.razor" />
     <None Include="Octicons\Pulse24.razor" />
     <None Include="Octicons\Question16.razor" />
     <None Include="Octicons\Question24.razor" />
     <None Include="Octicons\Quote16.razor" />
     <None Include="Octicons\Quote24.razor" />
+    <None Include="Octicons\Read16.razor" />
+    <None Include="Octicons\Read24.razor" />
+    <None Include="Octicons\Redo16.razor" />
+    <None Include="Octicons\Redo24.razor" />
+    <None Include="Octicons\RelFilePath16.razor" />
+    <None Include="Octicons\RelFilePath24.razor" />
     <None Include="Octicons\Reply16.razor" />
     <None Include="Octicons\Reply24.razor" />
     <None Include="Octicons\Repo16.razor" />
     <None Include="Octicons\Repo24.razor" />
     <None Include="Octicons\RepoClone16.razor" />
+    <None Include="Octicons\RepoClone24.razor" />
+    <None Include="Octicons\RepoDelete24.razor" />
     <None Include="Octicons\RepoDeleted16.razor" />
     <None Include="Octicons\RepoForked16.razor" />
     <None Include="Octicons\RepoForked24.razor" />
     <None Include="Octicons\RepoLocked16.razor" />
     <None Include="Octicons\RepoLocked24.razor" />
     <None Include="Octicons\RepoPull16.razor" />
+    <None Include="Octicons\RepoPull24.razor" />
     <None Include="Octicons\RepoPush16.razor" />
     <None Include="Octicons\RepoPush24.razor" />
     <None Include="Octicons\Report16.razor" />
@@ -448,6 +543,7 @@
     <None Include="Octicons\ShieldLock16.razor" />
     <None Include="Octicons\ShieldLock24.razor" />
     <None Include="Octicons\ShieldSlash16.razor" />
+    <None Include="Octicons\ShieldSlash24.razor" />
     <None Include="Octicons\ShieldX16.razor" />
     <None Include="Octicons\ShieldX24.razor" />
     <None Include="Octicons\SidebarCollapse16.razor" />
@@ -462,13 +558,20 @@
     <None Include="Octicons\SingleSelect24.razor" />
     <None Include="Octicons\Skip16.razor" />
     <None Include="Octicons\Skip24.razor" />
+    <None Include="Octicons\SkipFill16.razor" />
+    <None Include="Octicons\SkipFill24.razor" />
     <None Include="Octicons\Sliders16.razor" />
+    <None Include="Octicons\Sliders24.razor" />
     <None Include="Octicons\Smiley16.razor" />
     <None Include="Octicons\Smiley24.razor" />
     <None Include="Octicons\SortAsc16.razor" />
     <None Include="Octicons\SortAsc24.razor" />
     <None Include="Octicons\SortDesc16.razor" />
     <None Include="Octicons\SortDesc24.razor" />
+    <None Include="Octicons\SparkleFill16.razor" />
+    <None Include="Octicons\SparkleFill24.razor" />
+    <None Include="Octicons\SponsorTiers16.razor" />
+    <None Include="Octicons\SponsorTiers24.razor" />
     <None Include="Octicons\Square16.razor" />
     <None Include="Octicons\Square24.razor" />
     <None Include="Octicons\SquareFill16.razor" />
@@ -491,8 +594,10 @@
     <None Include="Octicons\Sun24.razor" />
     <None Include="Octicons\Sync16.razor" />
     <None Include="Octicons\Sync24.razor" />
+    <None Include="Octicons\Tab16.razor" />
     <None Include="Octicons\Tab24.razor" />
     <None Include="Octicons\TabExternal16.razor" />
+    <None Include="Octicons\TabExternal24.razor" />
     <None Include="Octicons\Table16.razor" />
     <None Include="Octicons\Table24.razor" />
     <None Include="Octicons\Tag16.razor" />
@@ -506,12 +611,17 @@
     <None Include="Octicons\Terminal16.razor" />
     <None Include="Octicons\Terminal24.razor" />
     <None Include="Octicons\ThreeBars16.razor" />
+    <None Include="Octicons\ThreeBars24.razor" />
     <None Include="Octicons\Thumbsdown16.razor" />
     <None Include="Octicons\Thumbsdown24.razor" />
     <None Include="Octicons\Thumbsup16.razor" />
     <None Include="Octicons\Thumbsup24.razor" />
     <None Include="Octicons\Tools16.razor" />
     <None Include="Octicons\Tools24.razor" />
+    <None Include="Octicons\TrackedByClosedCompleted16.razor" />
+    <None Include="Octicons\TrackedByClosedCompleted24.razor" />
+    <None Include="Octicons\TrackedByClosedNotPlanned16.razor" />
+    <None Include="Octicons\TrackedByClosedNotPlanned24.razor" />
     <None Include="Octicons\Trash16.razor" />
     <None Include="Octicons\Trash24.razor" />
     <None Include="Octicons\TriangleDown16.razor" />
@@ -526,12 +636,18 @@
     <None Include="Octicons\Trophy24.razor" />
     <None Include="Octicons\Typography16.razor" />
     <None Include="Octicons\Typography24.razor" />
+    <None Include="Octicons\Undo16.razor" />
+    <None Include="Octicons\Undo24.razor" />
     <None Include="Octicons\Unfold16.razor" />
     <None Include="Octicons\Unfold24.razor" />
+    <None Include="Octicons\Unlink16.razor" />
+    <None Include="Octicons\Unlink24.razor" />
     <None Include="Octicons\Unlock16.razor" />
     <None Include="Octicons\Unlock24.razor" />
     <None Include="Octicons\Unmute16.razor" />
     <None Include="Octicons\Unmute24.razor" />
+    <None Include="Octicons\Unread16.razor" />
+    <None Include="Octicons\Unread24.razor" />
     <None Include="Octicons\Unverified16.razor" />
     <None Include="Octicons\Unverified24.razor" />
     <None Include="Octicons\Upload16.razor" />
@@ -545,6 +661,7 @@
     <None Include="Octicons\Webhook16.razor" />
     <None Include="Octicons\Workflow16.razor" />
     <None Include="Octicons\Workflow24.razor" />
+    <None Include="Octicons\X12.razor" />
     <None Include="Octicons\X16.razor" />
     <None Include="Octicons\X24.razor" />
     <None Include="Octicons\XCircle16.razor" />
@@ -554,6 +671,10 @@
     <None Include="Octicons\XCircleFill24.razor" />
     <None Include="Octicons\Zap16.razor" />
     <None Include="Octicons\Zap24.razor" />
+    <None Include="Octicons\ZoomIn16.razor" />
+    <None Include="Octicons\ZoomIn24.razor" />
+    <None Include="Octicons\ZoomOut16.razor" />
+    <None Include="Octicons\ZoomOut24.razor" />
   </ItemGroup>
 
   <ItemGroup>
