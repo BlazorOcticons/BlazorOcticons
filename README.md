@@ -3,6 +3,8 @@
 [![GitHub](https://img.shields.io/github/license/BlazorOcticons/BlazorOcticons)](https://github.com/BlazorOcticons/BlazorOcticons/blob/main/LICENSE)
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/BlazorOcticons?logo=nuget)](https://www.nuget.org/packages/BlazorOcticons)
 
+![image](https://github.com/BlazorOcticons/BlazorOcticons/assets/6689884/30a985b1-0938-4ba7-b0c1-9ced889636d0)
+
 # BlazorOcticons
 
 **BlazorOcticons** is an easy-to-use GitHub Octicons built as customizable `.razor` components.
