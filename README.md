@@ -1,4 +1,4 @@
-[![Backup Status](https://app.cloudback.it/badge/BlazorOcticons/BlazorOcticons)](https://cloudback.it)
+[![Backup Status](https://cloudback.it/badge/BlazorOcticons/BlazorOcticons)](https://cloudback.it)
 [![.NET](https://github.com/BlazorOcticons/BlazorOcticons/actions/workflows/dotnet.yml/badge.svg)](https://github.com/BlazorOcticons/BlazorOcticons/actions/workflows/dotnet.yml)
 [![GitHub](https://img.shields.io/github/license/BlazorOcticons/BlazorOcticons)](https://github.com/BlazorOcticons/BlazorOcticons/blob/main/LICENSE)
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/BlazorOcticons?logo=nuget)](https://www.nuget.org/packages/BlazorOcticons)
