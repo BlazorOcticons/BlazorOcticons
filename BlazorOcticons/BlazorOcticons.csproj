@@ -1,8 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <!-- Detect if .NET 10 SDK is available (SDK version 10.x or higher) -->
+  <PropertyGroup>
+    <Net10SdkAvailable Condition="$([MSBuild]::VersionGreaterThanOrEquals('$(NETCoreSdkVersion)', '10.0.0'))">true</Net10SdkAvailable>
+  </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <LangVersion>9</LangVersion>
+    <!-- Include net10.0 only when SDK supports it -->
+    <TargetFrameworks Condition="'$(Net10SdkAvailable)' == 'true'">net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(Net10SdkAvailable)' != 'true'">net8.0;net9.0</TargetFrameworks>
+
     <Authors>Evgeniy K.</Authors>
     <Description></Description>
     <PackageProjectUrl>https://github.com/elv1s42/BlazorOcticons</PackageProjectUrl>
@@ -677,8 +684,16 @@
     <None Include="Octicons\ZoomOut24.razor" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.11" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0" />
   </ItemGroup>
   <ItemGroup>
     <SupportedPlatform Include="browser" />

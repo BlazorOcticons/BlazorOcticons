@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,42 +10,76 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace BlazorOcticonsGenerator
 {
-    [Generator]
-    public class OcticonsGenerator : ISourceGenerator
+    [Generator(LanguageNames.CSharp)]
+    public class OcticonsGenerator : IIncrementalGenerator
     {
-        public void Initialize(GeneratorInitializationContext context) { }
-
-        public void Execute(GeneratorExecutionContext context)
+        public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            if (context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.MSBuildProjectDirectory", out var projectDirectory) == false)
+            // Get the project directory from analyzer config options
+            var projectDirectoryProvider = context.AnalyzerConfigOptionsProvider
+                .Select(static (options, _) =>
+                {
+                    options.GlobalOptions.TryGetValue("build_property.MSBuildProjectDirectory", out var projectDirectory);
+                    return projectDirectory;
+                });
+
+            // Register source output - this will be called when project directory changes
+            context.RegisterSourceOutput(projectDirectoryProvider, Execute);
+        }
+
+        private static void Execute(SourceProductionContext context, string? projectDirectory)
+        {
+            if (string.IsNullOrEmpty(projectDirectory))
             {
-                throw new ArgumentException("MSBuildProjectDirectory should be specified");
+                context.ReportDiagnostic(Diagnostic.Create(
+                    new DiagnosticDescriptor(
+                        "OCTICONS001",
+                        "Missing Project Directory",
+                        "MSBuildProjectDirectory should be specified",
+                        "BlazorOcticonsGenerator",
+                        DiagnosticSeverity.Error,
+                        isEnabledByDefault: true),
+                    Location.None));
+                return;
             }
+
             var iconsFolder = Path.Combine(projectDirectory, "Octicons");
-            var sourceStart = @"
-namespace BlazorOcticonsGenerator {
-    // this is the list of files generated in the Octicons folder
-    public static class OcticonsList {
-";
-            var properties = "";
+            var sourceBuilder = new StringBuilder();
+            sourceBuilder.AppendLine("namespace BlazorOcticonsGenerator {");
+            sourceBuilder.AppendLine("    // this is the list of files generated in the Octicons folder");
+            sourceBuilder.AppendLine("    public static class OcticonsList {");
+
             var all = new List<string>();
             var assembly = Assembly.GetExecutingAssembly();
-            var icons = assembly.GetManifestResourceNames().Where(str => str.StartsWith("BlazorOcticonsGenerator.icons"));
+            var icons = assembly.GetManifestResourceNames()
+                .Where(str => str.StartsWith("BlazorOcticonsGenerator.icons"))
+                .OrderBy(str => str)
+                .ToList();
+
             var count = 0;
             var icons12 = new List<string>();
             var icons16 = new List<string>();
             var icons24 = new List<string>();
             var icons48 = new List<string>();
             var icons96 = new List<string>();
-            var octiconIcon = "";
+
             foreach (var icon in icons)
             {
+                context.CancellationToken.ThrowIfCancellationRequested();
+
                 using var stream = assembly.GetManifestResourceStream(icon);
+                if (stream == null) continue;
+
                 using var reader = new StreamReader(stream);
                 var svg = reader.ReadToEnd();
                 var fileName = icon.Replace("BlazorOcticonsGenerator.icons.", "").Replace(".svg", "").Replace(" ", "");
-                fileName = string.Join("", fileName.Split('-').Select(i => $"{i[0].ToString().ToUpper()}{i.Substring(1)}"));
-                var size = Convert.ToInt32(fileName.Substring(fileName.Length - 2, 2));
+                fileName = string.Join("", fileName.Split('-').Select(i => $"{char.ToUpper(i[0])}{i.Substring(1)}"));
+
+                if (fileName.Length < 2 || !int.TryParse(fileName.Substring(fileName.Length - 2, 2), out var size))
+                {
+                    continue;
+                }
+
                 switch (size)
                 {
                     case 12: icons12.Add(fileName); break;
@@ -54,6 +88,7 @@ namespace BlazorOcticonsGenerator {
                     case 48: icons48.Add(fileName); break;
                     case 96: icons96.Add(fileName); break;
                 }
+
                 var code = $@"
 
 @code
@@ -64,65 +99,56 @@ namespace BlazorOcticonsGenerator {
   [Parameter]
   public int Size {{ get; set; }} = {size};
 }}";
-                properties += $@"
-            public static string I{count} = {"\"" + fileName + "\""};";
+                sourceBuilder.AppendLine($"        public static string I{count} = \"{fileName}\";");
                 count++;
+
                 svg = Regex.Replace(svg, "width=\"[0-9]*\"", "width=\"@Size\"");
                 svg = Regex.Replace(svg, "height=\"[0-9]*\"", "height=\"@Size\"");
+
                 if (!Directory.Exists(iconsFolder))
                 {
                     Directory.CreateDirectory(iconsFolder);
                 }
+
                 all.Add(fileName);
                 var fileContent = $"{svg.Replace("path fill", "path fill=\"@Color\" fill").Replace("path d", "path fill=\"@Color\" d")}{code}";
                 File.WriteAllText(Path.Combine(iconsFolder, $"{fileName}.razor"), fileContent);
             }
-            properties += $@"
-            public static string[] All = new[] {{ {string.Join(",", all.Select(fn => "\"" + fn + "\""))} }};";
 
-            var divIcons12 = icons12.Aggregate("", (current, icon12) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon12}\"))\"><{icon12} /></a></div>{Environment.NewLine}");
-            var divIcons16 = icons16.Aggregate("", (current, icon16) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon16}\"))\"><{icon16} /></a></div>{Environment.NewLine}");
-            var divIcons24 = icons24.Aggregate("", (current, icon24) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon24}\"))\"><{icon24} /></a></div>{Environment.NewLine}");
-            var divIcons48 = icons48.Aggregate("", (current, icon48) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon48}\"))\"><{icon48} /></a></div>{Environment.NewLine}");
-            var divIcons96 = icons96.Aggregate("", (current, icon96) => current + $"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{icon96}\"))\"><{icon96} /></a></div>{Environment.NewLine}");
-            var sourceEnd = @"
-    }
-}";
-            File.WriteAllText(Path.Combine(projectDirectory, "IconsCollection.razor"), 
-                $@"
-<div class=""py-4"">
-  <div class=""pb-3"">
-    <span class=""fw-bold fs-x-large"">12px</span>
-  </div>
-  <div class=""d-flex pb-3 flex-wrap-wrap"">
-{divIcons12}
-  </div>
-  <div class=""pb-3"">
-    <span class=""fw-bold fs-x-large"">16px</span>
-  </div>
-  <div class=""d-flex pb-3 flex-wrap-wrap"">
-{divIcons16}
-  </div>
-  <div class=""d-flex pb-3"">
-    <span class=""fw-bold fs-x-large"">24px</span>
-  </div>
-  <div class=""d-flex pb-3 flex-wrap-wrap"">
-{divIcons24}
-  </div>
-  <div class=""d-flex pb-3"">
-    <span class=""fw-bold fs-x-large"">48px</span>
-  </div>
-  <div class=""d-flex pb-3 flex-wrap-wrap"">
-{divIcons48}
-  </div>
-  <div class=""d-flex pb-3"">
-    <span class=""fw-bold fs-x-large"">96px</span>
-  </div>
-  <div class=""d-flex pb-3 flex-wrap-wrap"">
-{divIcons96}
-  </div>
-</div>");
-            context.AddSource("OcticonsList.cs", SourceText.From($"{sourceStart}{properties}{sourceEnd}", Encoding.UTF8));
+            sourceBuilder.AppendLine($"        public static string[] All = new[] {{ {string.Join(", ", all.Select(fn => $"\"{fn}\""))} }};");
+            sourceBuilder.AppendLine("    }");
+            sourceBuilder.AppendLine("}");
+
+            // Generate IconsCollection.razor
+            var iconsCollectionBuilder = new StringBuilder();
+            iconsCollectionBuilder.AppendLine("<div class=\"py-4\">");
+
+            AppendIconSection(iconsCollectionBuilder, "12px", icons12);
+            AppendIconSection(iconsCollectionBuilder, "16px", icons16);
+            AppendIconSection(iconsCollectionBuilder, "24px", icons24);
+            AppendIconSection(iconsCollectionBuilder, "48px", icons48);
+            AppendIconSection(iconsCollectionBuilder, "96px", icons96);
+
+            iconsCollectionBuilder.AppendLine("</div>");
+
+            File.WriteAllText(Path.Combine(projectDirectory, "IconsCollection.razor"), iconsCollectionBuilder.ToString());
+
+            context.AddSource("OcticonsList.g.cs", SourceText.From(sourceBuilder.ToString(), Encoding.UTF8));
+        }
+
+        private static void AppendIconSection(StringBuilder builder, string sizeLabel, List<string> iconNames)
+        {
+            builder.AppendLine("  <div class=\"pb-3\">");
+            builder.AppendLine($"    <span class=\"fw-bold fs-x-large\">{sizeLabel}</span>");
+            builder.AppendLine("  </div>");
+            builder.AppendLine("  <div class=\"d-flex pb-3 flex-wrap-wrap\">");
+
+            foreach (var iconName in iconNames)
+            {
+                builder.AppendLine($"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{iconName}\"))\"><{iconName} /></a></div>");
+            }
+
+            builder.AppendLine("  </div>");
         }
     }
 }
