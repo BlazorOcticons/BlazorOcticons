@@ -1,15 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <!-- Detect if .NET 10 SDK is available (SDK version 10.x or higher) -->
   <PropertyGroup>
-    <Net10SdkAvailable Condition="$([MSBuild]::VersionGreaterThanOrEquals('$(NETCoreSdkVersion)', '10.0.0'))">true</Net10SdkAvailable>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <!-- Include net10.0 only when SDK supports it -->
-    <TargetFrameworks Condition="'$(Net10SdkAvailable)' == 'true'">net8.0;net9.0;net10.0</TargetFrameworks>
-    <TargetFrameworks Condition="'$(Net10SdkAvailable)' != 'true'">net8.0;net9.0</TargetFrameworks>
-
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <Authors>Evgeniy K.</Authors>
     <Description></Description>
     <PackageProjectUrl>https://github.com/elv1s42/BlazorOcticons</PackageProjectUrl>
@@ -20,7 +12,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.0.6</Version>
+    <Version>1.1.0</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
