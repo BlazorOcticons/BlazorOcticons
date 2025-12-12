@@ -1,27 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>9</LangVersion>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
     <Authors>Evgeniy K.</Authors>
-    <Description></Description>
     <PackageProjectUrl>https://github.com/elv1s42/BlazorOcticons</PackageProjectUrl>
     <RepositoryUrl>https://github.com/elv1s42/BlazorOcticons</RepositoryUrl>
     <PackageTags>source generators,blazor,octicons</PackageTags>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <ApplicationIcon />
-    <OutputType>Library</OutputType>
-    <StartupObject />
     <NeutralLanguage>en</NeutralLanguage>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
     <Version>1.1.0</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IsRoslynComponent>true</IsRoslynComponent>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)</CompilerGeneratedFilesOutputPath>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
@@ -30,17 +22,26 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <!-- SVG icons are now read via AdditionalTextsProvider, not embedded resources -->
+  <!-- Roslyn packages for source generator -->
   <ItemGroup>
-    <!-- Include icons in the NuGet package content folder -->
-    <None Include="icons\**\*.svg" Pack="true" PackagePath="contentFiles\any\any\icons" />
-    <Content Include="icons\**\*.svg" Pack="true" PackagePath="contentFiles\any\any\icons" CopyToOutputDirectory="Never" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.3.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.1" PrivateAssets="All" />
   </ItemGroup>
 
+  <!-- NuGet package content -->
   <ItemGroup>
-    <!-- Include the .props file that auto-configures AdditionalFiles for consumers -->
+    <None Include="icons\**\*.svg" Pack="true" PackagePath="contentFiles\any\any\icons" />
     <None Include="build\BlazorOcticonsGenerator.props" Pack="true" PackagePath="build" />
     <None Include="build\BlazorOcticonsGenerator.props" Pack="true" PackagePath="buildTransitive" />
+    <None Include="..\logo.png" Pack="true" PackagePath="\" />
+    <None Include="..\LICENSE" Pack="true" PackagePath="\" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Pack the analyzer DLL -->
+  <ItemGroup>
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,118 +50,4 @@
     <None Remove="bin\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\logo.png" Pack="true" PackagePath="\" />
-    <None Include="..\LICENSE" Pack="true" PackagePath="\" />
-    <None Include="..\README.md" Pack="true" PackagePath="\" />
-  </ItemGroup>
-
-  <ItemGroup Label="Package References">
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.3.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.1" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="bin\Debug\netstandard2.0\\BlazorOcticonsGenerator.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-  </ItemGroup>
-
-  <PropertyGroup>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
-    <IconsSourcePath>$(MSBuildProjectDirectory)\icons</IconsSourcePath>
-    <IconsOutputPath>$(MSBuildProjectDirectory)\..\BlazorOcticons\Octicons</IconsOutputPath>
-  </PropertyGroup>
-
-  <!-- Generate Razor icon components during build -->
-  <UsingTask TaskName="GenerateIconComponents" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-    <ParameterGroup>
-      <SourcePath ParameterType="System.String" Required="true" />
-      <OutputPath ParameterType="System.String" Required="true" />
-      <GeneratedCount ParameterType="System.Int32" Output="true" />
-    </ParameterGroup>
-    <Task>
-      <Using Namespace="System" />
-      <Using Namespace="System.IO" />
-      <Using Namespace="System.Linq" />
-      <Using Namespace="System.Text.RegularExpressions" />
-      <Using Namespace="System.Collections.Generic" />
-      <Code Type="Fragment" Language="cs"><![CDATA[
-        GeneratedCount = 0;
-        if (!Directory.Exists(SourcePath))
-        {
-            Log.LogWarning($"Icons source path not found: {SourcePath}");
-            return true;
-        }
-
-        if (!Directory.Exists(OutputPath))
-        {
-            Directory.CreateDirectory(OutputPath);
-        }
-
-        var svgFiles = Directory.GetFiles(SourcePath, "*.svg", SearchOption.AllDirectories)
-            .OrderBy(f => Path.GetFileName(f))
-            .ToList();
-
-        var icons12 = new List<string>();
-        var icons16 = new List<string>();
-        var icons24 = new List<string>();
-        var icons32 = new List<string>();
-        var icons48 = new List<string>();
-        var icons96 = new List<string>();
-
-        foreach (var svgFile in svgFiles)
-        {
-            var svg = File.ReadAllText(svgFile);
-            var baseName = Path.GetFileNameWithoutExtension(svgFile).Replace(" ", "");
-            var fileName = string.Join("", baseName.Split('-').Select(i => $"{char.ToUpper(i[0])}{i.Substring(1)}"));
-
-            if (fileName.Length < 2 || !int.TryParse(fileName.Substring(fileName.Length - 2, 2), out var size))
-            {
-                continue;
-            }
-
-            switch (size)
-            {
-                case 12: icons12.Add(fileName); break;
-                case 16: icons16.Add(fileName); break;
-                case 24: icons24.Add(fileName); break;
-                case 32: icons32.Add(fileName); break;
-                case 48: icons48.Add(fileName); break;
-                case 96: icons96.Add(fileName); break;
-            }
-
-            var code = $@"
-
-@code
-{{
-  [Parameter]
-  public string Color {{ get; set; }} = ""#000"";
-
-  [Parameter]
-  public int Size {{ get; set; }} = {size};
-}}";
-
-            svg = Regex.Replace(svg, "width=\"[0-9]*\"", "width=\"@Size\"");
-            svg = Regex.Replace(svg, "height=\"[0-9]*\"", "height=\"@Size\"");
-
-            var fileContent = $"{svg.Replace("path fill", "path fill=\"@Color\" fill").Replace("path d", "path fill=\"@Color\" d")}{code}";
-            File.WriteAllText(Path.Combine(OutputPath, $"{fileName}.razor"), fileContent);
-            GeneratedCount++;
-        }
-
-        Log.LogMessage(MessageImportance.High, $"Generated {GeneratedCount} icon components");
-      ]]></Code>
-    </Task>
-  </UsingTask>
-
-  <Target Name="GenerateIcons" AfterTargets="Build">
-    <GenerateIconComponents SourcePath="$(IconsSourcePath)" OutputPath="$(IconsOutputPath)">
-      <Output TaskParameter="GeneratedCount" PropertyName="IconsGenerated" />
-    </GenerateIconComponents>
-  </Target>
 </Project>

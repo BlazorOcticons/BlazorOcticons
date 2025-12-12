@@ -81,7 +81,6 @@ namespace BlazorOcticonsGenerator
             var all = new List<string>();
             var orderedSvgFiles = svgFiles.OrderBy(f => f.FileName).ToList();
 
-            var count = 0;
             var icons12 = new List<string>();
             var icons16 = new List<string>();
             var icons24 = new List<string>();
@@ -122,8 +121,6 @@ namespace BlazorOcticonsGenerator
   [Parameter]
   public int Size {{ get; set; }} = {size};
 }}";
-                sourceBuilder.AppendLine($"        public static string I{count} = \"{fileName}\";");
-                count++;
 
                 svg = Regex.Replace(svg, "width=\"[0-9]*\"", "width=\"@Size\"");
                 svg = Regex.Replace(svg, "height=\"[0-9]*\"", "height=\"@Size\"");
@@ -135,46 +132,78 @@ namespace BlazorOcticonsGenerator
 
                 all.Add(fileName);
                 var fileContent = $"{svg.Replace("path fill", "path fill=\"@Color\" fill").Replace("path d", "path fill=\"@Color\" d")}{code}";
-                File.WriteAllText(Path.Combine(iconsFolder, $"{fileName}.razor"), fileContent);
+                WriteFileWithRetry(Path.Combine(iconsFolder, $"{fileName}.razor"), fileContent);
             }
 
+            // Delete orphaned .razor files that no longer have a corresponding SVG
+            if (Directory.Exists(iconsFolder))
+            {
+                var generatedFileNames = new HashSet<string>(all.Select(f => $"{f}.razor"), StringComparer.OrdinalIgnoreCase);
+                foreach (var existingFile in Directory.GetFiles(iconsFolder, "*.razor"))
+                {
+                    var existingFileName = Path.GetFileName(existingFile);
+                    if (!generatedFileNames.Contains(existingFileName))
+                    {
+                        DeleteFileWithRetry(existingFile);
+                    }
+                }
+            }
+
+            // Generate OcticonsList class with icons grouped by size
             sourceBuilder.AppendLine($"        public static string[] All = new[] {{ {string.Join(", ", all.Select(fn => $"\"{fn}\""))} }};");
+            sourceBuilder.AppendLine();
+            sourceBuilder.AppendLine($"        public static string[] Icons12 = new[] {{ {string.Join(", ", icons12.Select(fn => $"\"{fn}\""))} }};");
+            sourceBuilder.AppendLine($"        public static string[] Icons16 = new[] {{ {string.Join(", ", icons16.Select(fn => $"\"{fn}\""))} }};");
+            sourceBuilder.AppendLine($"        public static string[] Icons24 = new[] {{ {string.Join(", ", icons24.Select(fn => $"\"{fn}\""))} }};");
+            sourceBuilder.AppendLine($"        public static string[] Icons32 = new[] {{ {string.Join(", ", icons32.Select(fn => $"\"{fn}\""))} }};");
+            sourceBuilder.AppendLine($"        public static string[] Icons48 = new[] {{ {string.Join(", ", icons48.Select(fn => $"\"{fn}\""))} }};");
+            sourceBuilder.AppendLine($"        public static string[] Icons96 = new[] {{ {string.Join(", ", icons96.Select(fn => $"\"{fn}\""))} }};");
+            sourceBuilder.AppendLine();
+            sourceBuilder.AppendLine("        public static System.Collections.Generic.Dictionary<int, string[]> BySize = new()");
+            sourceBuilder.AppendLine("        {");
+            sourceBuilder.AppendLine("            { 12, Icons12 },");
+            sourceBuilder.AppendLine("            { 16, Icons16 },");
+            sourceBuilder.AppendLine("            { 24, Icons24 },");
+            sourceBuilder.AppendLine("            { 32, Icons32 },");
+            sourceBuilder.AppendLine("            { 48, Icons48 },");
+            sourceBuilder.AppendLine("            { 96, Icons96 }");
+            sourceBuilder.AppendLine("        };");
             sourceBuilder.AppendLine("    }");
             sourceBuilder.AppendLine("}");
-
-            // Generate IconsCollection.razor
-            var iconsCollectionBuilder = new StringBuilder();
-            iconsCollectionBuilder.AppendLine("<div class=\"py-4\">");
-
-            AppendIconSection(iconsCollectionBuilder, "12px", icons12);
-            AppendIconSection(iconsCollectionBuilder, "16px", icons16);
-            AppendIconSection(iconsCollectionBuilder, "24px", icons24);
-            AppendIconSection(iconsCollectionBuilder, "32px", icons32);
-            AppendIconSection(iconsCollectionBuilder, "48px", icons48);
-            AppendIconSection(iconsCollectionBuilder, "96px", icons96);
-
-            iconsCollectionBuilder.AppendLine("</div>");
-
-            File.WriteAllText(Path.Combine(projectDirectory, "IconsCollection.razor"), iconsCollectionBuilder.ToString());
 
             context.AddSource("OcticonsList.g.cs", SourceText.From(sourceBuilder.ToString(), Encoding.UTF8));
         }
 
-        private static void AppendIconSection(StringBuilder builder, string sizeLabel, List<string> iconNames)
+        private static void WriteFileWithRetry(string path, string content, int maxRetries = 3)
         {
-            if (iconNames.Count == 0) return;
-
-            builder.AppendLine("  <div class=\"pb-3\">");
-            builder.AppendLine($"    <span class=\"fw-bold fs-x-large\">{sizeLabel}</span>");
-            builder.AppendLine("  </div>");
-            builder.AppendLine("  <div class=\"d-flex pb-3 flex-wrap-wrap\">");
-
-            foreach (var iconName in iconNames)
+            for (int i = 0; i < maxRetries; i++)
             {
-                builder.AppendLine($"    <div class=\"p-3\"><a class=\"cursor-pointer\" @onclick=\"@(async ()=> await OnClick.Invoke(\"{iconName}\"))\"><{iconName} /></a></div>");
+                try
+                {
+                    File.WriteAllText(path, content);
+                    return;
+                }
+                catch (IOException) when (i < maxRetries - 1)
+                {
+                    Thread.Sleep(100 * (i + 1));
+                }
             }
+        }
 
-            builder.AppendLine("  </div>");
+        private static void DeleteFileWithRetry(string path, int maxRetries = 3)
+        {
+            for (int i = 0; i < maxRetries; i++)
+            {
+                try
+                {
+                    File.Delete(path);
+                    return;
+                }
+                catch (IOException) when (i < maxRetries - 1)
+                {
+                    Thread.Sleep(100 * (i + 1));
+                }
+            }
         }
     }
 

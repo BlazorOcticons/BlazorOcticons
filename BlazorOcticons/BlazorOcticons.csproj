@@ -25,6 +25,21 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <!-- Reference the source generator -->
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorOcticonsGenerator\BlazorOcticonsGenerator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+  </ItemGroup>
+
+  <!-- Make MSBuildProjectDirectory visible to the source generator -->
+  <ItemGroup>
+    <CompilerVisibleProperty Include="MSBuildProjectDirectory" />
+  </ItemGroup>
+
+  <!-- Include SVG icons as AdditionalFiles for the source generator -->
+  <ItemGroup>
+    <AdditionalFiles Include="..\BlazorOcticonsGenerator\icons\**\*.svg" Link="icons\%(Filename)%(Extension)" />
+  </ItemGroup>
+
   <!-- Package metadata files -->
   <ItemGroup>
     <None Include="..\logo.png" Pack="true" PackagePath="\" />
