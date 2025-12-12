@@ -6,7 +6,8 @@
       "Bash(dir \"C:\\GitHub\\BlazorOcticons\\ConsoleApp\\Octicons\")",
       "Bash(Select-String -Pattern \"Agent|AiModel|Sparkle\")",
       "Bash(Select-Object -First 10)",
-      "Bash(dotnet restore:*)"
+      "Bash(dotnet restore:*)",
+      "Bash(del \"C:\\GitHub\\BlazorOcticons\\BlazorOcticons\\OcticonsList.cs\")"
     ]
   }
 }

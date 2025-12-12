@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Text;
 
 namespace BlazorOcticonsGenerator
 {
@@ -73,20 +71,8 @@ namespace BlazorOcticonsGenerator
             }
 
             var iconsFolder = Path.Combine(projectDirectory, "Octicons");
-            var sourceBuilder = new StringBuilder();
-            sourceBuilder.AppendLine("namespace BlazorOcticonsGenerator {");
-            sourceBuilder.AppendLine("    // this is the list of files generated in the Octicons folder");
-            sourceBuilder.AppendLine("    public static class OcticonsList {");
-
             var all = new List<string>();
             var orderedSvgFiles = svgFiles.OrderBy(f => f.FileName).ToList();
-
-            var icons12 = new List<string>();
-            var icons16 = new List<string>();
-            var icons24 = new List<string>();
-            var icons32 = new List<string>();
-            var icons48 = new List<string>();
-            var icons96 = new List<string>();
 
             foreach (var svgFile in orderedSvgFiles)
             {
@@ -99,16 +85,6 @@ namespace BlazorOcticonsGenerator
                 if (fileName.Length < 2 || !int.TryParse(fileName.Substring(fileName.Length - 2, 2), out var size))
                 {
                     continue;
-                }
-
-                switch (size)
-                {
-                    case 12: icons12.Add(fileName); break;
-                    case 16: icons16.Add(fileName); break;
-                    case 24: icons24.Add(fileName); break;
-                    case 32: icons32.Add(fileName); break;
-                    case 48: icons48.Add(fileName); break;
-                    case 96: icons96.Add(fileName); break;
                 }
 
                 var code = $@"
@@ -148,30 +124,6 @@ namespace BlazorOcticonsGenerator
                     }
                 }
             }
-
-            // Generate OcticonsList class with icons grouped by size
-            sourceBuilder.AppendLine($"        public static string[] All = new[] {{ {string.Join(", ", all.Select(fn => $"\"{fn}\""))} }};");
-            sourceBuilder.AppendLine();
-            sourceBuilder.AppendLine($"        public static string[] Icons12 = new[] {{ {string.Join(", ", icons12.Select(fn => $"\"{fn}\""))} }};");
-            sourceBuilder.AppendLine($"        public static string[] Icons16 = new[] {{ {string.Join(", ", icons16.Select(fn => $"\"{fn}\""))} }};");
-            sourceBuilder.AppendLine($"        public static string[] Icons24 = new[] {{ {string.Join(", ", icons24.Select(fn => $"\"{fn}\""))} }};");
-            sourceBuilder.AppendLine($"        public static string[] Icons32 = new[] {{ {string.Join(", ", icons32.Select(fn => $"\"{fn}\""))} }};");
-            sourceBuilder.AppendLine($"        public static string[] Icons48 = new[] {{ {string.Join(", ", icons48.Select(fn => $"\"{fn}\""))} }};");
-            sourceBuilder.AppendLine($"        public static string[] Icons96 = new[] {{ {string.Join(", ", icons96.Select(fn => $"\"{fn}\""))} }};");
-            sourceBuilder.AppendLine();
-            sourceBuilder.AppendLine("        public static System.Collections.Generic.Dictionary<int, string[]> BySize = new()");
-            sourceBuilder.AppendLine("        {");
-            sourceBuilder.AppendLine("            { 12, Icons12 },");
-            sourceBuilder.AppendLine("            { 16, Icons16 },");
-            sourceBuilder.AppendLine("            { 24, Icons24 },");
-            sourceBuilder.AppendLine("            { 32, Icons32 },");
-            sourceBuilder.AppendLine("            { 48, Icons48 },");
-            sourceBuilder.AppendLine("            { 96, Icons96 }");
-            sourceBuilder.AppendLine("        };");
-            sourceBuilder.AppendLine("    }");
-            sourceBuilder.AppendLine("}");
-
-            context.AddSource("OcticonsList.g.cs", SourceText.From(sourceBuilder.ToString(), Encoding.UTF8));
         }
 
         private static void WriteFileWithRetry(string path, string content, int maxRetries = 3)
