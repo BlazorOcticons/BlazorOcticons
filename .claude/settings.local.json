@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet clean:*)",
+      "Bash(dotnet build:*)",
+      "Bash(dir \"C:\\GitHub\\BlazorOcticons\\ConsoleApp\\Octicons\")",
+      "Bash(Select-String -Pattern \"Agent|AiModel|Sparkle\")",
+      "Bash(Select-Object -First 10)"
+    ]
+  }
+}

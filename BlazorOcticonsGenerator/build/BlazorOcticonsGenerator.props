@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BlazorOcticonsIconsPath>$(MSBuildThisFileDirectory)..\contentFiles\any\any\icons\</BlazorOcticonsIconsPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Make MSBuildProjectDirectory visible to the source generator -->
+    <CompilerVisibleProperty Include="MSBuildProjectDirectory" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Automatically include SVG icons as AdditionalFiles for the source generator -->
+    <AdditionalFiles Include="$(BlazorOcticonsIconsPath)**\*.svg" Condition="Exists('$(BlazorOcticonsIconsPath)')" />
+  </ItemGroup>
+</Project>

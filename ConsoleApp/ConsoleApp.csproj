@@ -8,6 +8,10 @@
     <CompilerVisibleProperty Include="MSBuildProjectDirectory" />
   </ItemGroup>
   <ItemGroup>
+    <!-- Include SVG icons as AdditionalFiles for the source generator -->
+    <AdditionalFiles Include="..\BlazorOcticonsGenerator\icons\**\*.svg" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\BlazorOcticonsGenerator\BlazorOcticonsGenerator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
   </ItemGroup>
 
