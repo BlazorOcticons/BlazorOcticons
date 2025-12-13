@@ -7,7 +7,11 @@
       "Bash(Select-String -Pattern \"Agent|AiModel|Sparkle\")",
       "Bash(Select-Object -First 10)",
       "Bash(dotnet restore:*)",
-      "Bash(del \"C:\\GitHub\\BlazorOcticons\\BlazorOcticons\\OcticonsList.cs\")"
+      "Bash(del \"C:\\GitHub\\BlazorOcticons\\BlazorOcticons\\OcticonsList.cs\")",
+      "Bash(dotnet new:*)",
+      "Bash(dotnet sln:*)",
+      "Bash(unzip:*)",
+      "Bash(dotnet nuget:*)"
     ]
   }
 }

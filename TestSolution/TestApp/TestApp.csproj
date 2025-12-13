@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.22" />
+    <PackageReference Include="BlazorOcticonsGenerator" Version="1.2.0" />
+  </ItemGroup>
+
+  <!-- Use only local test icons -->
+  <ItemGroup>
+    <AdditionalFiles Remove="$(BlazorOcticonsIconsPath)**\*.svg" />
+    <AdditionalFiles Include="test-icons\**\*.svg" />
+  </ItemGroup>
+
+</Project>
+

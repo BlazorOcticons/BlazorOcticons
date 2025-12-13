@@ -12,7 +12,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>

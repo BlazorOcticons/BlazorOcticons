@@ -9,12 +9,11 @@
     <RepositoryUrl>https://github.com/elv1s42/BlazorOcticons</RepositoryUrl>
     <PackageTags>source generators,blazor,octicons</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IsRoslynComponent>true</IsRoslynComponent>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
     <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
 
@@ -39,15 +38,15 @@
     <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
-  <!-- Pack the analyzer DLL -->
-  <ItemGroup>
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-  </ItemGroup>
+  <PropertyGroup>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <BuildOutputTargetFolder>analyzers/dotnet/cs</BuildOutputTargetFolder>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+  </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="bin\**" />
     <EmbeddedResource Remove="bin\**" />
-    <None Remove="bin\**" />
   </ItemGroup>
 
 </Project>
