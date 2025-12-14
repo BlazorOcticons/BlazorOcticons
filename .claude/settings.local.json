@@ -11,7 +11,8 @@
       "Bash(dotnet new:*)",
       "Bash(dotnet sln:*)",
       "Bash(unzip:*)",
-      "Bash(dotnet nuget:*)"
+      "Bash(dotnet nuget:*)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }
