@@ -19,6 +19,9 @@
     <IncludeBuildOutput>true</IncludeBuildOutput>
     <DevelopmentDependency>false</DevelopmentDependency>
     <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Enable trimming support -->
+    <IsTrimmable>true</IsTrimmable>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
