@@ -100,6 +100,8 @@ namespace BlazorOcticonsGenerator
 
                 svg = Regex.Replace(svg, "width=\"[0-9]*\"", "width=\"@Size\"");
                 svg = Regex.Replace(svg, "height=\"[0-9]*\"", "height=\"@Size\"");
+                // Some upstream icons hard-code the path fill; the Color parameter sets it instead.
+                svg = svg.Replace(" fill=\"currentColor\"", "");
 
                 if (!Directory.Exists(iconsFolder))
                 {

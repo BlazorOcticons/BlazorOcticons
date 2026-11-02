@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="@Size" height="@Size" viewBox="0 0 24 24"><path fill="@Color" d="M20.067 10.421c1.243.684 1.243 2.471 0 3.155l-12 6.596A1.8 1.8 0 0 1 5.4 18.595V5.402a1.8 1.8 0 0 1 2.667-1.577z"/></svg>
+
+@code
+{
+  [Parameter]
+  public string Color { get; set; } = "#000";
+
+  [Parameter]
+  public int Size { get; set; } = 24;
+}

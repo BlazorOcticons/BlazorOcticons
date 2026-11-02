@@ -35,6 +35,7 @@ jobs:
       run: dotnet pack -c Release -o out
 
     - name: Publish Nuget to NuGet.org
+      if: github.event_name == 'push'
       run: dotnet nuget push ./out/BlazorOcticons*.nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols
       env:
         NUGET_TOKEN: ${{ secrets.NUGET }}
