@@ -7,7 +7,7 @@
 
 # BlazorOcticons
 
-**BlazorOcticons** is an easy-to-use GitHub Octicons built as customizable `.razor` components.
+**BlazorOcticons** are easy-to-use [GitHub Octicons](https://github.com/primer/octicons) built as customizable `.razor` components. Browse all icons at [blazorocticons.net](https://blazorocticons.net/).
 
 | NuGet Package           | Description |
 |-------------------------|-------------|
